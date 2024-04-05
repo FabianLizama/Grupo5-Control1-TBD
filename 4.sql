@@ -1,13 +1,21 @@
-SELECT DISTINCT ON (C.name) 
-    C.name AS Comuna_Name,
-    MT.type_transportation AS Transportation_Type,
-    COUNT(MT.type_transportation) OVER(PARTITION BY C.name, MT.type_transportation) AS Usage_Count
-FROM 
+SELECT
+    EXTRACT(YEAR FROM O.order_date) AS year,
+    EXTRACT(MONTH FROM O.order_date) AS month,
+    R.name AS region_name,
+    COUNT(*) AS num_orders
+FROM
     Orders O
-    JOIN Customer CU ON O.customer_id = CU.customer_id
-    JOIN Address A ON CU.customer_address = A.address_id
-    JOIN Communa C ON A.communa_id = C.communa_id
-    JOIN Delivery_Man DM ON O.delivery_man_id = DM.delivery_man_id
-    JOIN Means_of_Transportation MT ON DM.delivery_man_id = MT.delivery_man_id
-GROUP BY C.name, MT.type_transportation, O.delivery_man_id
-ORDER BY C.name, COUNT(MT.type_transportation) OVER(PARTITION BY C.name, MT.type_transportation) DESC;
+    INNER JOIN Customer CU ON O.customer_id = CU.customer_id
+    INNER JOIN Address A ON CU.customer_address = A.address_id
+    INNER JOIN Communa CO ON A.communa_id = CO.communa_id
+    INNER JOIN Region R ON CO.region_id = R.region_id
+WHERE
+    O.order_date >= CURRENT_DATE - INTERVAL '3 years'
+GROUP BY
+    year,
+    month,
+    R.name
+ORDER BY
+    year DESC,
+    month DESC,
+    num_orders DESC;
