@@ -57,16 +57,6 @@ CREATE TABLE IF NOT EXISTS Means_of_Transportation (
     FOREIGN KEY (delivery_man_id) REFERENCES Delivery_Man(delivery_man_id)
 );
 
--- Creación de la tabla Orders
-CREATE TABLE IF NOT EXISTS Orders (
-    order_id INT PRIMARY KEY NOT NULL,
-    customer_id INT NOT NULL,
-    delivery_man_id INT NOT NULL,
-    order_date date NOT NULL,
-    FOREIGN KEY (customer_id) REFERENCES Customer(customer_id),
-    FOREIGN KEY (delivery_man_id) REFERENCES Delivery_Man(delivery_man_id)
-);
-
 -- Creación de la tabla Detailed Selling
 CREATE TABLE IF NOT EXISTS Detailed_Selling (
     detailed_selling_id INT PRIMARY KEY NOT NULL,
@@ -74,6 +64,19 @@ CREATE TABLE IF NOT EXISTS Detailed_Selling (
     total_amount_money MONEY NOT NULL,
     FOREIGN KEY (customer_id) REFERENCES Customer(customer_id)
 );
+
+-- Creación de la tabla Orders
+CREATE TABLE IF NOT EXISTS Orders (
+    order_id INT PRIMARY KEY NOT NULL,
+    customer_id INT NOT NULL,
+    delivery_man_id INT NOT NULL,
+    detailed_selling_id INT NOT NULL,
+    order_date date NOT NULL,
+    FOREIGN KEY (customer_id) REFERENCES Customer(customer_id),
+    FOREIGN KEY (delivery_man_id) REFERENCES Delivery_Man(delivery_man_id),
+    FOREIGN KEY (detailed_selling_id) REFERENCES Detailed_Selling(detailed_selling_id)
+);
+
 
 CREATE TABLE IF NOT EXISTS Detailed_Selling_Product (
 	detailed_delling_droduct_id INT PRIMARY KEY NOT NULL,
