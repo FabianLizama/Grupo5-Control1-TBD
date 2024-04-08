@@ -1,38 +1,11 @@
-WITH MonthlyPayments AS (
-    SELECT
-        Customer.customer_id,
-        Customer.customer_name,
-        Company.company_name,
-        DATE_FORMAT(Orders.order_date, '%Y-%m') AS payment_month,
-        SUM(Detailed_Selling.total_amount_money) AS total_paid
-    FROM
-        Customer
-    JOIN
-        Orders ON Customer.customer_id = Orders.customer_id
-    JOIN
-        Detailed_Selling ON Orders.detailed_selling_id = Detailed_Selling.detailed_selling_id
-    JOIN
-        Company ON Detailed_Selling.customer_id = Company.company_id
-    GROUP BY
-        Customer.customer_id,
-        Company.company_id,
-        payment_month
-    ),
-    
-Ranking AS (
-    SELECT
-        *,
-        RANK() OVER(PARTITION BY company_name, payment_month ORDER BY total_paid DESC) AS payment_rank
-    FROM
-        MonthlyPayments
-)
-SELECT
-    customer_id,
-    customer_name,
-    company_name,
-    payment_month,
-    total_paid
-FROM
-    Ranking
-WHERE
-    payment_rank = 1;
+SELECT c.customer_name, p.product_name, SUM(ds.total_amount_money) AS total_amount_money
+FROM Customer c
+JOIN Detailed_Selling ds ON c.customer_id = ds.customer_id
+JOIN Orders o ON ds.detailed_selling_id = o.detailed_selling_id
+JOIN Detailed_Selling_Product dsp ON ds.detailed_selling_id = dsp.detailed_selling_id
+JOIN Product p ON dsp.product_id = p.product_id
+WHERE MONTH(o.order_date) = MONTH(CURRENT_DATE())
+AND YEAR(o.order_date) = YEAR(CURRENT_DATE())
+GROUP BY c.customer_name, p.product_name
+ORDER BY total_amount_money DESC;
+

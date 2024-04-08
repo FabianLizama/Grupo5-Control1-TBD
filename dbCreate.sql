@@ -61,7 +61,7 @@ CREATE TABLE IF NOT EXISTS Means_of_Transportation (
 CREATE TABLE IF NOT EXISTS Detailed_Selling (
     detailed_selling_id INT PRIMARY KEY NOT NULL,
     customer_id INT NOT NULL,
-    total_amount_money MONEY NOT NULL,
+    total_amount_money INT NOT NULL,
     FOREIGN KEY (customer_id) REFERENCES Customer(customer_id)
 );
 
