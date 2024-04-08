@@ -30,7 +30,7 @@ INSERT INTO Communa (communa_id, name, region_id) VALUES
 (10, 'Coquimbo', 5),
 (11, 'Valparaíso', 6),
 (12, 'Viña del Mar', 6),
-(13, 'Santiago', 7),
+(13, 'Santiago Centro', 7),
 (14, 'Puente Alto', 7),
 (15, 'Rancagua', 8),
 (16, 'San Fernando', 8),
