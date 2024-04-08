@@ -42,7 +42,8 @@ INSERT INTO Communa (communa_id, name, region_id) VALUES
 (22, 'Valdivia', 12),
 (23, 'Puerto Montt', 13),
 (24, 'Coyhaique', 14),
-(25, 'Punta Arenas', 15);
+(25, 'Punta Arenas', 15),
+(26, 'Providencia', 7);
 
 -- Inserts para la tabla Address
 INSERT INTO Address (address_id, communa_id, address_name, address_number) VALUES
@@ -209,25 +210,25 @@ INSERT INTO Detailed_Selling (detailed_selling_id, customer_id, total_amount_mon
 -- Inserts ajustados para la tabla Orders con detailed_selling_id correctos
 INSERT INTO Orders (order_id, customer_id, delivery_man_id, detailed_selling_id, order_date) VALUES
 (1, 24, 10, 1, '2023-05-01'),
-(2, 5, 4, 2, '2023-05-02'),
-(3, 18, 7, 3, '2023-05-03'),
-(4, 11, 2, 4, '2023-05-04'),
-(5, 3, 9, 5, '2023-05-05'),
-(6, 21, 6, 6, '2023-05-06'),
-(7, 14, 1, 7, '2023-05-07'),
-(8, 7, 5, 8, '2023-05-08'),
-(9, 20, 8, 9, '2023-05-09'),
-(10, 12, 3, 10, '2023-05-10'),
-(11, 6, 10, 11, '2023-05-11'),
-(12, 23, 4, 12, '2023-05-12'),
-(13, 16, 7, 13, '2023-05-13'),
-(14, 9, 2, 14, '2023-05-14'),
-(15, 1, 9, 15, '2023-05-15'),
-(16, 19, 6, 16, '2023-05-16'),
-(17, 13, 1, 17, '2023-05-17'),
-(18, 5, 5, 18, '2023-05-18'),
-(19, 17, 8, 19, '2023-05-19'),
-(20, 10, 3, 20, '2023-05-20');
+(2, 24, 10, 2, '2020-05-02'),
+(3, 24, 10, 3, '2020-05-03'),
+(4, 24, 10, 4, '2021-05-04'),
+(5, 24, 10, 5, '2020-05-05'),
+(6, 24, 10, 6, '2022-05-06'),
+(7, 24, 10, 7, '2023-05-07'),
+(8, 24, 10, 8, '2022-05-08'),
+(9, 24, 10, 9, '2022-05-09'),
+(10, 24, 10, 10, '2021-05-10'),
+(11, 24, 10, 11, '2023-05-11'),
+(12, 24, 10, 12, '2022-05-12'),
+(13, 24, 10, 13, '2022-05-13'),
+(14, 24, 10, 14, '2022-05-14'),
+(15, 24, 10, 15, '2021-05-15'),
+(16, 24, 10, 16, '2024-03-16'),
+(17, 24, 10, 17, '2024-03-17'),
+(18, 24, 10, 18, '2024-03-18'),
+(19, 24, 10, 19, '2024-03-19'),
+(20, 24, 10, 20, '2024-03-20');
 
 -- Inserts para la tabla Detailed_Selling_Product
 INSERT INTO Detailed_Selling_Product (detailed_delling_droduct_id, detailed_selling_id, product_id) VALUES
@@ -288,9 +289,9 @@ INSERT INTO Delivery_Man_Communa (delivery_man_communa_id, delivery_man_id, comm
 (15, 8, 8),
 (16, 8, 18),
 (17, 9, 9),
-(18, 9, 19),
-(19, 10, 10),
-(20, 10, 20);
+(18, 9, 26),
+(19, 10, 26),
+(20, 10, 26);
 
 -- Inserts para la tabla Company_Communa
 INSERT INTO Company_Communa (company_communa_id, company_id, communa_id) VALUES
