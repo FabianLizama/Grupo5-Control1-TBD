@@ -8,7 +8,7 @@ JOIN
 JOIN
     Detailed_Selling_Product dsp ON ds.detailed_selling_id = dsp.detailed_selling_id
 WHERE
-    o.order_date >= DATE_SUB(CURDATE(), INTERVAL 1 MONTH)
+    o.order_date >= (CURRENT_DATE - INTERVAL '1 MONTH')
 GROUP BY
     DATE(o.order_date)
 ORDER BY
